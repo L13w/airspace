@@ -1,0 +1,252 @@
+@import url('https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;500;600;700&family=Inter:wght@400;500;600;700&display=swap');
+
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+:root {
+  /* Aviation-inspired dark palette */
+  --bg-primary: #0a0e14;
+  --bg-secondary: #12171f;
+  --bg-tertiary: #1a202a;
+  --bg-glass: rgba(10, 14, 20, 0.92);
+  --bg-glass-light: rgba(26, 32, 42, 0.85);
+
+  /* Airspace class colors - aviation standard inspired */
+  --class-b: #3b82f6;
+  --class-b-glow: rgba(59, 130, 246, 0.4);
+  --class-c: #a855f7;
+  --class-c-glow: rgba(168, 85, 247, 0.4);
+  --class-d: #22d3ee;
+  --class-d-glow: rgba(34, 211, 238, 0.4);
+  --class-e: #f472b6;
+  --class-e-glow: rgba(244, 114, 182, 0.3);
+
+  /* Accent colors */
+  --accent-gold: #fbbf24;
+  --accent-green: #10b981;
+  --accent-red: #ef4444;
+
+  /* Text */
+  --text-primary: #f1f5f9;
+  --text-secondary: #94a3b8;
+  --text-muted: #64748b;
+
+  /* Borders */
+  --border-subtle: rgba(148, 163, 184, 0.1);
+  --border-accent: rgba(59, 130, 246, 0.3);
+
+  /* Fonts */
+  --font-mono: 'JetBrains Mono', 'SF Mono', 'Consolas', monospace;
+  --font-sans: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', system-ui, sans-serif;
+}
+
+html,
+body,
+#root {
+  width: 100%;
+  height: 100%;
+  overflow: hidden;
+  font-family: var(--font-sans);
+  background: var(--bg-primary);
+  color: var(--text-primary);
+}
+
+/* Smooth scrollbar for panels */
+::-webkit-scrollbar {
+  width: 6px;
+}
+
+::-webkit-scrollbar-track {
+  background: transparent;
+}
+
+::-webkit-scrollbar-thumb {
+  background: var(--text-muted);
+  border-radius: 3px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: var(--text-secondary);
+}
+
+/* Glass panel base styles */
+.glass-panel {
+  background: var(--bg-glass);
+  backdrop-filter: blur(20px);
+  -webkit-backdrop-filter: blur(20px);
+  border: 1px solid var(--border-subtle);
+  border-radius: 12px;
+  box-shadow:
+    0 4px 24px rgba(0, 0, 0, 0.4),
+    0 0 0 1px rgba(255, 255, 255, 0.02) inset;
+}
+
+/* Mono text for data */
+.mono {
+  font-family: var(--font-mono);
+}
+
+/* Altitude badge */
+.altitude-badge {
+  font-family: var(--font-mono);
+  font-size: 11px;
+  font-weight: 600;
+  padding: 3px 8px;
+  border-radius: 4px;
+  background: var(--bg-tertiary);
+  border: 1px solid var(--border-subtle);
+}
+
+/* Class badge colors */
+.class-badge {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  font-family: var(--font-mono);
+  font-size: 12px;
+  font-weight: 700;
+  width: 28px;
+  height: 28px;
+  border-radius: 6px;
+  letter-spacing: 0;
+}
+
+.class-badge.B {
+  background: linear-gradient(135deg, var(--class-b), #2563eb);
+  box-shadow: 0 0 12px var(--class-b-glow);
+}
+
+.class-badge.C {
+  background: linear-gradient(135deg, var(--class-c), #7c3aed);
+  box-shadow: 0 0 12px var(--class-c-glow);
+}
+
+.class-badge.D {
+  background: linear-gradient(135deg, var(--class-d), #06b6d4);
+  box-shadow: 0 0 12px var(--class-d-glow);
+}
+
+.class-badge.E {
+  background: linear-gradient(135deg, var(--class-e), #ec4899);
+  box-shadow: 0 0 12px var(--class-e-glow);
+}
+
+/* Animations */
+@keyframes fadeIn {
+  from { opacity: 0; transform: translateY(8px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+
+@keyframes slideInRight {
+  from { opacity: 0; transform: translateX(20px); }
+  to { opacity: 1; transform: translateX(0); }
+}
+
+@keyframes pulse {
+  0%, 100% { opacity: 1; }
+  50% { opacity: 0.6; }
+}
+
+@keyframes glow {
+  0%, 100% { box-shadow: 0 0 8px var(--class-b-glow); }
+  50% { box-shadow: 0 0 16px var(--class-b-glow); }
+}
+
+.animate-fade-in {
+  animation: fadeIn 0.3s ease-out;
+}
+
+.animate-slide-in {
+  animation: slideInRight 0.3s ease-out;
+}
+
+/* View toggle buttons */
+.view-toggle {
+  display: flex;
+  gap: 2px;
+  padding: 3px;
+  background: var(--bg-tertiary);
+  border-radius: 8px;
+}
+
+.view-toggle button {
+  font-family: var(--font-sans);
+  font-size: 12px;
+  font-weight: 500;
+  padding: 6px 12px;
+  border: none;
+  border-radius: 6px;
+  background: transparent;
+  color: var(--text-secondary);
+  cursor: pointer;
+  transition: all 0.2s ease;
+}
+
+.view-toggle button:hover {
+  color: var(--text-primary);
+  background: rgba(255, 255, 255, 0.05);
+}
+
+.view-toggle button.active {
+  background: var(--class-b);
+  color: white;
+  box-shadow: 0 2px 8px var(--class-b-glow);
+}
+
+/* ============================================
+   MOBILE RESPONSIVE STYLES
+   ============================================ */
+
+/* Hide on mobile utility class */
+.hide-on-mobile {
+  display: block;
+}
+
+/* Show on mobile utility class */
+.show-on-mobile {
+  display: none;
+}
+
+/* Mobile-specific layout adjustments */
+@media (max-width: 768px) {
+  .hide-on-mobile {
+    display: none !important;
+  }
+
+  .show-on-mobile {
+    display: block !important;
+  }
+
+  /* Smaller glass panels on mobile */
+  .glass-panel {
+    border-radius: 8px;
+  }
+
+  /* Mobile-optimized class badge */
+  .class-badge {
+    width: 24px;
+    height: 24px;
+    font-size: 10px;
+  }
+}
+
+/* Small mobile screens */
+@media (max-width: 480px) {
+  .glass-panel {
+    border-radius: 6px;
+    box-shadow: 0 2px 12px rgba(0, 0, 0, 0.3);
+  }
+}
+
+/* Touch device optimizations */
+@media (hover: none) and (pointer: coarse) {
+  /* Larger touch targets */
+  .glass-panel button,
+  .glass-panel a {
+    min-height: 44px;
+    min-width: 44px;
+  }
+}
